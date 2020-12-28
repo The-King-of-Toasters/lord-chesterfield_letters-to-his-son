@@ -1,0 +1,29 @@
+The information encoded in the matrix is encoded as a TSV.
+The keys are:
+
+date, main language, editions
+
+- `dateline` is the dateline of the letter, if given.
+- `main language` is the language the letter was written in.
+  Chesterfield liked to mix it up a bit and write in French to test his son.
+  The keys are:
+
+  `en`: English
+  `fr`: French
+
+This data is used in the golang XHTML generator at `generate.go`.
+
+As for the source text, there are two editions I'm focusing on
+
+- "The Works of Lord Chesterfield" by Harper & Brothers, published various times in the 1800s.
+- "Lord Chesterfield's Letters" Oliver H. G. Leigh, published in 1901[1]. This
+  seems to be based off the Harper edition. The book splits the letters from
+  before 1750 into the juvenile section. This is the basis of the Gutenberg
+  transcription, but it only contains the first 320 letters.
+
+[1] https://archive.org/download/letterstohissono01chesuoft https://archive.org/download/letterstohissono02chesuoft
+[2] https://www.google.com.au/books/edition/The_Works_of_Lord_Chesterfield/sz1TAAAAcAAJ?hl=en&gbpv=0
+
+Misc oddities
+Letter 190 should be August _20_, not 30.
+Letter 204 has a description by Mr Harte, written in french. Endnote for this, or use the translation?
