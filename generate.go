@@ -31,15 +31,14 @@ const se_tmpl = `<?xml version="1.0" encoding="utf-8"?>
 		<link href="../css/local.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body epub:type="bodymatter z3998:non-fiction">
-		<section id="letter-{{.Num}}" epub:type="chapter z3998:letter">
+		<article id="letter-{{.Num}}" epub:type="z3998:letter">
 			<h2>
 				<span epub:type="label">Letter</span>
-				<span epub:type="ordinal">{{.Num}}</span>{{if ne .Lang "en" }}<a href="endnotes.xhtml#{{.Endno}}" id="noteref-{{.Endno}}" epub:type="noteref">{{.Endno}}</a>{{end}}
-			</h2>
-			{{if .Dateline}}
+				<span epub:type="ordinal">{{.Num}}</span>{{if ne .Lang "en" }}<a href="endnotes.xhtml#note-{{.Endno}}" id="noteref-{{.Endno}}" epub:type="noteref">{{.Endno}}</a>{{end}}
+			</h2>{{if .Dateline}}
 			<p epub:type="se:letter.dateline">{{.Dateline}}</p>{{end}}
 			<p epub:type="z3998:salutation"></p>
-		</section>
+		</article>
 	</body>
 </html>
 `
@@ -54,12 +53,10 @@ const end_tmpl = `<?xml version="1.0" encoding="utf-8"?>
 	<body epub:type="backmatter">
 		<section id="endnotes" epub:type="endnotes">
 			<h2 epub:type="title">Endnotes</h2>
-			<ol>
-			{{range .}}
+			<ol>{{range .}}
 				<li id="note-{{.Endno}}" epub:type="endnote">
 					<p>This letter was originally written in {{.Language}}. <a href="letter-{{.Num}}.xhtml#noteref-{{.Endno}}" epub:type="backlink">↩</a></p>
-				</li>
-			{{end}}
+				</li>{{end}}
 			</ol>
 		</section>
 	</body>
@@ -112,12 +109,18 @@ func main() {
 		switch (arr[1]) {
 		case "fr":
 			lang_count++
-			endnotes = append(endnotes, LangInfo{lang_count, "French", letter_count})
+			endnotes = append(endnotes, LangInfo{letter_count, "French", lang_count})
+			break;
 		case "la":
 			lang_count++
-			endnotes = append(endnotes, LangInfo{lang_count, "Latin", letter_count})
+			endnotes = append(endnotes, LangInfo{letter_count, "Latin", lang_count})
+			break;
 		}
 		generate(LetterInfo{letter_count, arr[0], arr[1], lang_count})
+	}
+
+	for i := range endnotes {
+		fmt.Println(endnotes[i].Num, endnotes[i].Endno)
 	}
 
 	ef, err := os.Create("src/epub/text/endnotes.xhtml")
