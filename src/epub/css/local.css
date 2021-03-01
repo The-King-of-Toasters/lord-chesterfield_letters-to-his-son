@@ -24,6 +24,10 @@ footer{
 	font-variant: small-caps;
 }
 
+[epub|type~="z3998:valediction"]{
+	text-align: right;
+}
+
 [epub|type~="z3998:postscript"]{
 	margin-top: 1em;
 	text-indent: 0;
@@ -32,6 +36,10 @@ footer{
 
 body [xml|lang]{
 	font-style: italic;
+}
+
+body [xml|lang] em{
+	font-style: initial;
 }
 
 [epub|type~="z3998:verse"] p,
@@ -81,4 +89,31 @@ p span.i2{
 
 section + p{
 	margin-top: 1em;
+}
+
+table{
+	margin: 1em auto 1em auto;
+}
+
+table td:last-child{
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+}
+
+#letter-40 table{
+	table-layout: fixed;
+	width: 70%;
+}
+
+#letter-40 table td:first-child{
+	width: 90%;
+}
+
+#letter-40 table td:last-child{
+	width: 10%;
+}
+
+#letter-53 ul{
+	list-style-type: none;
+	columns: 3;
 }
