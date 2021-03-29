@@ -11,6 +11,7 @@ footer{
 	text-align: right;
 }
 
+[epub|type~="z3998:sender"] + p,
 [epub|type~="z3998:salutation"] + p,
 [epub|type~="se:letter.dateline"] + p,
 [epub|type~="z3998:letter"] + p{
@@ -116,4 +117,9 @@ table td:last-child{
 #letter-53 ul{
 	list-style-type: none;
 	columns: 3;
+}
+
+#letter-81 ul{
+	list-style-type: none;
+	columns: 2;
 }
