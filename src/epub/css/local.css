@@ -114,12 +114,15 @@ table td:last-child{
 	width: 10%;
 }
 
-#letter-53 ul{
+ul{
 	list-style-type: none;
+}
+
+#letter-53 ul{
 	columns: 3;
 }
 
-#letter-81 ul{
-	list-style-type: none;
+#letter-81 ul,
+#letter-82 ul{
 	columns: 2;
 }
